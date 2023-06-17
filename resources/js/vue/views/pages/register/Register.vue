@@ -31,9 +31,9 @@
       <form @submit.prevent="register">
         <div class="flex flex-col mb-4">
           <label
-            for="name"
+            for="username"
             class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
-            >Name:</label
+            >Username:</label
           >
           <div class="relative">
             <div
@@ -55,16 +55,16 @@
             </div>
 
             <input
-              id="name"
+              id="username"
               type="text"
-              name="name"
+              name="username"
               class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-indigo-400"
-              placeholder="Name"
-              v-model="full_name"
+              placeholder="Username"
+              v-model="username"
             />
           </div>
-          <span class="text-red-500" v-if="error.full_name != null">{{
-            error.full_name
+          <span class="text-red-500" v-if="error.username != null">{{
+            error.username
           }}</span>
         </div>
         <div class="flex flex-col mb-4">
@@ -244,6 +244,7 @@ import { RouterLink } from "vue-router";
 import { setError } from "@/helpers";
 import { useUserStore } from "@/stores/users";
 import router from "@/router";
+import axios from 'axios';
 
 // const body = document.body;
 // body.className = `hold-transition register-page`
@@ -253,50 +254,49 @@ import router from "@/router";
 // })
 
 const userStore = useUserStore();
-const full_name = ref("");
+const username = ref("");
 const email = ref("");
 const password = ref("");
 const password_confirmation = ref("");
 let error: Ref<{ [key: string]: string }> = ref({});
 const register = () => {
-  error.value = validation();
 
-  if (Object.getOwnPropertyNames(error.value).length > 0) {
-    return;
-  }
+    axios.post('/api/register', {
+        username : username.value,
+        email : email.value,
+        password : password.value,
+        password_confirmation : password_confirmation.value
+    }).then(res => {
+        error.value = {};
+        router.push({ name: "login" });
+    }).catch(err => {
+        const erro = err.response;
+        let errors = {};
 
-  userStore.store({
-    username: full_name.value,
-    email: email.value,
-    password: password.value,
-  });
+        if(erro.data.errors){
+            for (const i in erro.data.errors) {
+                errors = setError(errors, i, erro.data.errors[i][0])
+            }
+            error.value = errors;
+        }
+    })
 
-  router.push({ name: "login" });
+    //   error.value = validation();
+
+//   if (Object.getOwnPropertyNames(error.value).length > 0) {
+//     return;
+//   }
+
+//   userStore.store({
+//     username: username.value,
+//     email: email.value,
+//     password: password.value,
+//   });
+
+//   router.push({ name: "login" });
 };
 
-const validation = () => {
-  let err: { [key: string]: string } = {};
 
-  if (full_name.value.trim().length < 1) {
-    err = setError(err, "full_name", "This field is required");
-  }
-
-  if (email.value.trim().length < 1) {
-    err = setError(err, "email", "This field is required");
-  }
-
-  if (password.value.trim().length < 1) {
-    err = setError(err, "password", "This field is required");
-    err.password = "This field is required";
-  }
-
-  if (password_confirmation.value.trim().length < 1) {
-    err = setError(err, "password_confirmation", "This field is required");
-    err.password_confirmation = "This field is required";
-  }
-
-  return err;
-};
 </script>
 
 <style scoped></style>

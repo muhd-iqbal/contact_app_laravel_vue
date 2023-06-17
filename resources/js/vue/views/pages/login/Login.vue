@@ -33,7 +33,7 @@
       </div>
       <div class="mt-10">
         <form @submit.prevent="submitForm">
-          <InputGroup type="text" placeholder="Email" v-model="email">
+          <InputGroup type="text" placeholder="Username" v-model="username">
             <template #icon>
               <div
                 class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400"
@@ -54,8 +54,8 @@
               </div>
             </template>
             <template #error>
-              <span class="text-red-500" v-if="error.email != null">{{
-                error.email
+              <span class="text-red-500" v-if="error.username != null">{{
+                error.username
               }}</span>
             </template>
           </InputGroup>
@@ -85,6 +85,9 @@
             <template #error>
               <span class="text-red-500" v-if="error.password != null">{{
                 error.password
+              }}</span>
+              <span class="text-red-500" v-if="error.message != null">{{
+                error.message
               }}</span>
             </template>
           </InputGroup>
@@ -159,39 +162,67 @@ import { RouterLink } from "vue-router";
 import { setError } from "@/helpers";
 import { useAuthStore } from "@/stores/auth";
 import router from "@/router";
+import axios from "axios";
+import { useUserStore } from "@/stores/users";
 
+const userStore = useUserStore();
 const { login, user } = useAuthStore();
-const email = ref("");
+const username = ref("");
 const password = ref("");
 let error: Ref<{ [key: string]: string }> = ref({});
 const submitForm = () => {
-  console.log(user);
+  axios
+    .post("/api/login", {
+      username: username.value,
+      password: password.value,
+    })
+    .then((res) => {
+      error.value = {};
+      userStore.store({
+        id: res.data.user.id,
+      });
+      login(res.data.user.id);
+      router.push({ name: "home" });
+    })
+    .catch((err) => {
+      const erro = err.response;
+      let errors = {};
 
-  error.value = validation();
+      if (erro.data.errors) {
+        for (const i in erro.data.errors) {
+          errors = setError(errors, i, erro.data.errors[i][0]);
+        }
+        error.value = errors;
+      }
+    });
 
-  if (Object.getOwnPropertyNames(error.value).length > 0) {
-    return;
-  }
+  //   console.log(user);
 
-  if (!login(email.value, password.value)) {
-    return alert("failed to login");
-  }
+  //   error.value = validation();
 
-  router.push({ name: "home" });
+  //   if (Object.getOwnPropertyNames(error.value).length > 0) {
+  //     return;
+  //   }
+
+  //   if (!login(email.value, password.value)) {
+  //     return alert("failed to login");
+  //   }
+
+  //   router.push({ name: "home" });
 };
 
-const validation = () => {
-  let err: { [key: string]: string } = {};
+// const validation = () => {
+//   let err: { [key: string]: string } = {};
 
-  if (email.value.trim().length < 1) {
-    err = setError(err, "email", "This field is required");
-  }
+//   if (email.value.trim().length < 1) {
+//     err = setError(err, "email", "This field is required");
+//   }
 
-  if (password.value.trim().length < 1) {
-    err = setError(err, "password", "This field is required");
-  }
-  return err;
-};
+//   if (password.value.trim().length < 1) {
+//     err = setError(err, "password", "This field is required");
+//   }
+//   return err;
+// };
 </script>
 
 <style scoped></style>

@@ -6,19 +6,15 @@ export const useAuthStore = defineStore("authStore", {
         user: null
     }),
     actions: {
-        login(username: string, password: string) {
+        login(id: String) {
             const { users } = useUserStore();
-            const user = users.filter((u) => u.email == username)
-
+            const user = users.filter((u) => u.id);
+            
             if (user.length < 1) {
                 return false;
             }
 
-            if (user[0].password != password) {
-                return false;
-            }
-
-            (this as any).user = user[0];
+            (this as any).user = id;
             return true;
         },
         getUser() {

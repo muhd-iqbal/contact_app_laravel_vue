@@ -1,97 +1,197 @@
 <template>
-    <div class="hold-transition login-page">
-        <div class="login-box">
-            <div class="card card-outline card-primary">
-                <div class="card-header text-center">
-                    <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
-                </div>
-                <div class="card-body">
-                    <p class="login-box-msg">Sign in to start your session</p>
-                    <form @submit.prevent="submitForm">
-                        <InputGroup type="text" placeholder="Email" v-model="email">
-                            <template #icon>
-                                <span class="fas fa-envelope"></span>
-                            </template>
-                            <template #error>
-                                <span class="text-danger" v-if="error.email != null">{{ error.email }}</span>
-                            </template>
-                        </InputGroup>
-                        <InputGroup type="password" placeholder="Password" v-model="password">
-                            <template #icon>
-                                <span class="fas fa-lock"></span>
-                            </template>
-                            <template #error>
-                                <span class="text-danger" v-if="error.password != null">{{ error.password }}</span>
-                            </template>
-                        </InputGroup>
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="icheck-primary">
-                                    <input type="checkbox" id="remember">
-                                    <label for="remember">
-                                        Remember Me
-                                    </label>
-                                </div>
-                            </div>
+  <link
+    rel="stylesheet"
+    href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css"
+  />
 
-                            <div class="col-4">
-                                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                            </div>
-
-                        </div>
-                    </form>
-                    <p class="mb-0">
-                        <RouterLink to="/register" class="text-center">Register a new membership</RouterLink>
-                    </p>
-                </div>
-
-            </div>
-
+  <div
+    class="min-h-screen flex flex-col items-center justify-center bg-gray-300"
+  >
+    <div
+      class="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md"
+    >
+      <div
+        class="font-medium self-center text-xl sm:text-2xl uppercase text-gray-800"
+      >
+        Login To Your Account
+      </div>
+      <button
+        class="relative mt-6 border rounded-md py-2 text-sm text-gray-800 bg-gray-100 hover:bg-gray-200"
+      >
+        <span
+          class="absolute left-0 top-0 flex items-center justify-center h-full w-10 text-blue-500"
+          ><i class="fab fa-facebook-f"></i
+        ></span>
+        <span>Login with Facebook</span>
+      </button>
+      <div class="relative mt-10 h-px bg-gray-300">
+        <div class="absolute left-0 top-0 flex justify-center w-full -mt-2">
+          <span class="bg-white px-4 text-xs text-gray-500 uppercase"
+            >Or Login With Email</span
+          >
         </div>
+      </div>
+      <div class="mt-10">
+        <form @submit.prevent="submitForm">
+          <InputGroup type="text" placeholder="Email" v-model="email">
+            <template #icon>
+              <div
+                class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400"
+              >
+                <svg
+                  class="h-6 w-6"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                  />
+                </svg>
+              </div>
+            </template>
+            <template #error>
+              <span class="text-red-500" v-if="error.email != null">{{
+                error.email
+              }}</span>
+            </template>
+          </InputGroup>
+
+          <InputGroup type="password" placeholder="Password" v-model="password">
+            <template #icon>
+              <div
+                class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400"
+              >
+                <span>
+                  <svg
+                    class="h-6 w-6"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </template>
+            <template #error>
+              <span class="text-red-500" v-if="error.password != null">{{
+                error.password
+              }}</span>
+            </template>
+          </InputGroup>
+
+          <div class="flex items-center mb-6 -mt-4">
+            <div class="flex ml-auto">
+              <a
+                href="#"
+                class="inline-flex text-xs sm:text-sm text-blue-500 hover:text-blue-700"
+                >Forgot Your Password?</a
+              >
+            </div>
+          </div>
+
+          <div class="flex w-full">
+            <button
+              type="submit"
+              class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-600 hover:bg-blue-700 rounded py-2 w-full transition duration-150 ease-in"
+            >
+              <span class="mr-2 uppercase">Login</span>
+              <span>
+                <svg
+                  class="h-6 w-6"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="flex justify-center items-center mt-6">
+        <RouterLink
+          to="/register"
+          class="inline-flex items-center font-bold text-blue-500 hover:text-blue-700 text-xs text-center"
+        >
+          <span>
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+              />
+            </svg>
+          </span>
+          <span class="ml-2">You don't have an account?</span>
+        </RouterLink>
+      </div>
     </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import InputGroup from '@/components/InputGroup.vue'
-import { ref } from 'vue';
-import type { Ref } from 'vue';
-import { RouterLink } from "vue-router"
-import { setError } from "@/helpers"
-import { useAuthStore } from '@/stores/auth';
-import router from '@/router';
+import InputGroup from "@/components/InputGroup.vue";
+import { ref } from "vue";
+import type { Ref } from "vue";
+import { RouterLink } from "vue-router";
+import { setError } from "@/helpers";
+import { useAuthStore } from "@/stores/auth";
+import router from "@/router";
 
-const { login,user } = useAuthStore();
+const { login, user } = useAuthStore();
 const email = ref("");
 const password = ref("");
 let error: Ref<{ [key: string]: string }> = ref({});
 const submitForm = () => {
-    console.log(user);
-    
-    error.value = validation();
-    
-    if (Object.getOwnPropertyNames(error.value).length > 0) {
-        return;
-    }
-    
-    if(!login(email.value,password.value)){
-        return alert("failed to login");
-    }
-    
-    router.push({name:"home"});
-}
+  console.log(user);
+
+  error.value = validation();
+
+  if (Object.getOwnPropertyNames(error.value).length > 0) {
+    return;
+  }
+
+  if (!login(email.value, password.value)) {
+    return alert("failed to login");
+  }
+
+  router.push({ name: "home" });
+};
 
 const validation = () => {
-    let err: { [key: string]: string } = {};
+  let err: { [key: string]: string } = {};
 
-    if (email.value.trim().length < 1) {
-        err = setError(err, "email", "This field is required");
-    }
+  if (email.value.trim().length < 1) {
+    err = setError(err, "email", "This field is required");
+  }
 
-    if (password.value.trim().length < 1) {
-        err = setError(err, "password", "This field is required");
-    }
-    return err;
-}
+  if (password.value.trim().length < 1) {
+    err = setError(err, "password", "This field is required");
+  }
+  return err;
+};
 </script>
 
 <style scoped></style>

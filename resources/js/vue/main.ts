@@ -2,9 +2,6 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
 import "@/assets/plugins/fontawesome-free/css/all.min.css"
-import "@/assets/dist/css/adminlte.min.css"
-import "@/assets/plugins/bootstrap/js/bootstrap.bundle.min"
-// import "@/assets/dist/js/adminlte"
 
 import App from './App.vue'
 import router from './router'

@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import SettingView from '../views/SettingView.vue'
 import { IsNotLogin } from '@/middleware/IsNotLogin'
 
 const router = createRouter({
@@ -28,6 +29,14 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('@/views/pages/login/Login.vue')
+    },
+    {
+      path: '/settings',
+      name: 'settings',
+      component: SettingView,
+      meta: {
+        IsNotLogin
+      }
     },
     {
       path: '/add-contact',

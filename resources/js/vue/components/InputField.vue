@@ -1,5 +1,5 @@
 <template>
-  <div :class="'w-full lg:w-' + props.width + ' px-4'">
+  <div :class="'w-full px-4 ' + props.classExtend">
     <div class="relative w-full mb-3">
       <label
         class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -35,9 +35,9 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  width: {
+  classExtend: {
     type: String,
-    default: '6/12',
+    default: 'lg:w-6/12',
   }
 });
 

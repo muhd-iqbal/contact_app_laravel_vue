@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-screen justify-between">
+
     <!-- Navbar -->
     <Navbar />
     <!-- /.navbar -->
@@ -11,7 +11,7 @@
 
     <!-- Main Footer -->
     <Footer />
-  </div>
+
 </template>
 <script setup lang="ts">
 import Navbar from "@/views/layouts/Navbar.vue";

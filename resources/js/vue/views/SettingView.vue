@@ -1,15 +1,7 @@
 <template>
   <Main>
     <template #content>
-      <!-- component -->
-      <link
-        rel="stylesheet"
-        href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css"
-      />
-      <link
-        rel="stylesheet"
-        href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
-      />
+
 
       <section class="py-1 bg-blueGray-50">
         <div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
@@ -62,9 +54,15 @@
                 <h6
                   class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase"
                 >
-                  Contact Information
+                  Application Settings
                 </h6>
                 <div class="flex flex-wrap">
+                  <InputField
+                    name="Last Name"
+                    placeholder="Your Last Name"
+                    v-model="last_name"
+                    classExtend="lg:w-2/12"
+                  />
                   <div class="w-full lg:w-12/12 px-4">
                     <div class="relative w-full mb-3">
                       <label
@@ -156,33 +154,6 @@
               </form>
             </div>
           </div>
-          <footer class="relative pt-8 pb-6 mt-2">
-            <div class="container mx-auto px-4">
-              <div
-                class="flex flex-wrap items-center md:justify-between justify-center"
-              >
-                <div class="w-full md:w-6/12 px-4 mx-auto text-center">
-                  <div class="text-sm text-blueGray-500 font-semibold py-1">
-                    Made with
-                    <a
-                      href="https://www.creative-tim.com/product/notus-js"
-                      class="text-blueGray-500 hover:text-gray-800"
-                      target="_blank"
-                      >Notus JS</a
-                    >
-                    by
-                    <a
-                      href="https://www.creative-tim.com"
-                      class="text-blueGray-500 hover:text-blueGray-800"
-                      target="_blank"
-                    >
-                      Creative Tim</a
-                    >.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </footer>
         </div>
       </section>
     </template>

@@ -1,8 +1,8 @@
 <template>
-  <footer class="main-footer">
+  <footer class="main-footer fixed inset-x-0 bottom-0">
 
       <div class="w-full max-w-md mx-auto">
-        <div class="px-7 bg-white shadow-lg rounded-2xl mb-5">
+        <div class="px-7 bg-white shadow-lg rounded-2xl sm:mb-5">
           <div class="flex">
             <div class="flex-1 group cursor-pointer">
               <RouterLink

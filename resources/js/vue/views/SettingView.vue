@@ -1,8 +1,6 @@
 <template>
   <Main>
     <template #content>
-
-
       <section class="py-1 bg-blueGray-50">
         <div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
           <div
@@ -37,18 +35,7 @@
                     placeholder="New Email Address"
                     v-model="email"
                   />
-                  <InputField
-                    name="First Name"
-                    placeholder="Ypur First Name"
-                    v-model="first_name"
-                  />
-                  <InputField
-                    name="Last Name"
-                    placeholder="Ypur Last Name"
-                    v-model="last_name"
-                  />
                 </div>
-
                 <hr class="mt-6 border-b-1 border-blueGray-300" />
 
                 <h6
@@ -58,69 +45,28 @@
                 </h6>
                 <div class="flex flex-wrap">
                   <InputField
-                    name="Last Name"
-                    placeholder="Your Last Name"
-                    v-model="last_name"
-                    classExtend="lg:w-2/12"
+                    name="Allocation (%)"
+                    placeholder="Needs - Wants - Savings"
+                    v-model="allocation"
                   />
-                  <div class="w-full lg:w-12/12 px-4">
+                  <div class="w-full px-4 lg:w-6/12">
                     <div class="relative w-full mb-3">
-                      <label
-                        class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlfor="grid-password"
-                      >
-                        Address
-                      </label>
-                      <input
-                        type="text"
-                        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                      />
+                      <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">Allocate From</label>
+                      <select v-model="allocationFrom" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                        <option value="1">All Monthly Income</option>
+                        <option value="2">Fixed Salary</option>
+                      </select>
                     </div>
                   </div>
-                  <div class="w-full lg:w-4/12 px-4">
+                  <InputField
+                    name="Currency"
+                    placeholder="Currency Symbol"
+                    v-model="currency"
+                  />
+                  <div v-if="allocationFrom==2" class="w-full px-4 lg:w-6/12">
                     <div class="relative w-full mb-3">
-                      <label
-                        class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlfor="grid-password"
-                      >
-                        City
-                      </label>
-                      <input
-                        type="email"
-                        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        value="New York"
-                      />
-                    </div>
-                  </div>
-                  <div class="w-full lg:w-4/12 px-4">
-                    <div class="relative w-full mb-3">
-                      <label
-                        class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlfor="grid-password"
-                      >
-                        Country
-                      </label>
-                      <input
-                        type="text"
-                        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        value="United States"
-                      />
-                    </div>
-                  </div>
-                  <div class="w-full lg:w-4/12 px-4">
-                    <div class="relative w-full mb-3">
-                      <label
-                        class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlfor="grid-password"
-                      >
-                        Postal Code
-                      </label>
-                      <input
-                        type="text"
-                        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        value="Postal Code"
-                      />
+                      <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">Monthly Salary</label>
+                      <input v-model="monthlySalary" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="Enter Monthly Salary">
                     </div>
                   </div>
                 </div>
@@ -169,4 +115,11 @@ const username = ref("");
 const email = ref("");
 const first_name = ref("");
 const last_name = ref("");
+const allocation = ref("");
+const currency = ref("");
+const allocationFrom = ref("");
+const monthlySalary = ref("");
+
+
+
 </script>

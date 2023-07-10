@@ -39,12 +39,20 @@ const router = createRouter({
       }
     },
     {
-      path: '/add-contact',
-      name: 'add-contact',
+      path: '/add-record',
+      name: 'add-record',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('@/views/pages/contact/form/ContactForm.vue'),
+      component: () => import('@/views/pages/contact/form/RecordForm.vue'),
+      meta: {
+        IsNotLogin
+      }
+    },
+    {
+      path: '/shopping-list',
+      name: 'shopping-list',
+      component: () => import('@/views/pages/forms/ShoppingList.vue'),
       meta: {
         IsNotLogin
       }

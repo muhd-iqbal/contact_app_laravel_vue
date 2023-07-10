@@ -5,10 +5,7 @@
         class="grid grid-cols-1 gap-2 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 mt-3 mx-5 lg:mx-40 xl:mx-72"
       >
         <div
-          class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
-          style="
-            background-image: url('../../assets/dist/img/bg-card-dashboard.jpg');
-          "
+          class="background relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
         >
           <div
             class="absolute inset-0 bg-pink-900 bg-opacity-75 transition duration-300 ease-in-out"
@@ -23,7 +20,7 @@
               </h3>
               <div class="flex space-x-4 mt-4">
                 <button
-                  class="block uppercase mx-auto shadow bg-white text-indigo-600 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-4 rounded font-bold"
+                  class="block uppercase mx-auto shadow bg-purple-800 text-indigo-600 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-4 rounded font-bold"
                 >
                   Transfer
                 </button>
@@ -36,11 +33,79 @@
             </div>
           </div>
         </div>
+        <SummaryCard
+          title="Needs Remaining"
+          value="RM100"
+          secondaryText="out of RM 500 (50%)"
+          backgroundColor="bg-red-600"
+          icon='file-invoice-dollar'
+          color="text-red-600"
+          secondaryColor="text-red-200"
+        />
+        <SummaryCard
+          title="Wants Remaining"
+          value="RM100"
+          secondaryText="out of RM 500 (50%)"
+          backgroundColor="bg-yellow-600"
+          icon='shopping-cart'
+          color="text-yellow-600"
+          secondaryColor="text-yellow-200"
+        />
+        <SummaryCard
+          title="Savings Remaining"
+          value="RM100"
+          secondaryText="out of RM 500 (50%)"
+          backgroundColor="bg-green-600"
+          icon='piggy-bank'
+          color="text-green-600"
+          secondaryColor="text-green-200"
+        />
+        <SummaryCard
+          title="Debt"
+          value="RM100"
+          secondaryText="credit limit of RM2,500"
+          backgroundColor="bg-blue-600"
+          icon='credit-card'
+          color="text-blue-600"
+          secondaryColor="text-blue-200"
+        />
+        <RouterLink to="/shopping-list">
+          <SummaryCard
+          title="Shopping List"
+            value="72 items"
+            secondaryText="out of 100 items"
+            backgroundColor="bg-pink-600"
+            icon='shopping-bag'
+            color="text-pink-600"
+            secondaryColor="text-pink-200"
+            redirect="/shopping-list"
+          />
+        </RouterLink>
+        <!-- <div
+          class="background relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
+        >
+          <div
+            class="absolute inset-0 bg-red-600 bg-opacity-75 transition duration-300 ease-in-out"
+          ></div>
+          <div
+            class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
+          >
+            <div>
+              <div class="text-white text-lg flex space-x-2 items-center">
+                <div class="bg-white rounded-md p-2 flex items-center">
+                  <font-awesome-icon :icon="['fas', 'file-invoice-dollar']" class="text-red-600" />
+                </div>
+                <p>Needs Remaining</p>
+              </div>
+              <h3 class="text-white text-3xl mt-2 font-bold">RM100</h3>
+              <h3 class="text-white text-lg mt-2 text-yellow-100">
+                out of RM 500 (50%)
+              </h3>
+            </div>
+          </div>
+        </div>
         <div
-          class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
-          style="
-            background-image: url(../../assets/dist/img/bg-card-dashboard.jpg);
-          "
+          class="background relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
         >
           <div
             class="absolute inset-0 bg-yellow-600 bg-opacity-75 transition duration-300 ease-in-out"
@@ -51,22 +116,42 @@
             <div>
               <div class="text-white text-lg flex space-x-2 items-center">
                 <div class="bg-white rounded-md p-2 flex items-center">
-                  <i class="fas fa-toggle-off fa-sm text-yellow-300"></i>
+                  <font-awesome-icon :icon="['fas', 'gem']" class="text-yellow-600" />
                 </div>
-                <p>Finished Appt</p>
+                <p>Wants Remaining</p>
               </div>
-              <h3 class="text-white text-3xl mt-2 font-bold">120</h3>
+              <h3 class="text-white text-3xl mt-2 font-bold">RM100</h3>
               <h3 class="text-white text-lg mt-2 text-yellow-100">
-                4 not confirmed
+                out of RM 500 (30%)
               </h3>
             </div>
           </div>
         </div>
         <div
-          class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
-          style="
-            background-image: url(../../assets/dist/img/bg-card-dashboard.jpg);
-          "
+          class="background relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
+        >
+          <div
+            class="absolute inset-0 bg-purple-600 bg-opacity-75 transition duration-300 ease-in-out"
+          ></div>
+          <div
+            class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
+          >
+            <div>
+              <div class="text-white text-lg flex space-x-2 items-center">
+                <div class="bg-white rounded-md p-2 flex items-center">
+                  <font-awesome-icon :icon="['fas', 'piggy-bank']" class="text-purple-600" />
+                </div>
+                <p>Saving Remaining</p>
+              </div>
+              <h3 class="text-white text-3xl mt-2 font-bold">RM100</h3>
+              <h3 class="text-white text-lg mt-2 text-yellow-100">
+                out of RM 500 (20%)
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div
+          class="background relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
         >
           <div
             class="absolute inset-0 bg-blue-900 bg-opacity-75 transition duration-300 ease-in-out"
@@ -79,7 +164,7 @@
                 <div class="bg-white rounded-md p-2 flex items-center">
                   <i class="fas fa-clipboard-check fa-sm text-blue-800"></i>
                 </div>
-                <p>Finished Appt</p>
+                <p>Shopping List</p>
               </div>
               <h3 class="text-white text-3xl mt-2 font-bold">72</h3>
               <h3 class="text-white text-lg mt-2">
@@ -89,6 +174,30 @@
             </div>
           </div>
         </div>
+        <div
+          class="background relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
+        >
+          <div
+            class="absolute inset-0 bg-blue-900 bg-opacity-75 transition duration-300 ease-in-out"
+          ></div>
+          <div
+            class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
+          >
+            <div>
+              <div class="text-white text-lg flex space-x-2 items-center">
+                <div class="bg-white rounded-md p-2 flex items-center">
+                  <font-awesome-icon :icon="['fas', 'credit-card']" />
+                </div>
+                <p>Credits</p>
+              </div>
+              <h3 class="text-white text-3xl mt-2 font-bold">RM100</h3>
+              <h3 class="text-white text-lg mt-2">
+                RM1,000
+                <span class="font-semibold text-blue-200">credit limit</span>
+              </h3>
+            </div>
+          </div>
+        </div> -->
       </div>
     </template>
   </Main>
@@ -96,4 +205,11 @@
 
 <script setup lang="ts">
 import Main from "@/views/layouts/Main.vue";
+import SummaryCard from "@/components/SummaryCard.vue";
 </script>
+
+<style scoped>
+.background{
+  background-image: url('@/assets/dist/img/bg-card-dashboard.jpg')
+}
+</style>

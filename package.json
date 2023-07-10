@@ -6,9 +6,15 @@
         "build": "vite build"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^6.4.0",
+        "@fortawesome/free-brands-svg-icons": "^6.4.0",
+        "@fortawesome/free-regular-svg-icons": "^6.4.0",
+        "@fortawesome/free-solid-svg-icons": "^6.4.0",
+        "@fortawesome/vue-fontawesome": "^3.0.3",
         "pinia": "^2.0.36",
         "uuid": "^9.0.0",
         "vue": "^3.3.2",
+        "vue-month-picker": "^1.7.2",
         "vue-router": "^4.2.0"
     },
     "devDependencies": {

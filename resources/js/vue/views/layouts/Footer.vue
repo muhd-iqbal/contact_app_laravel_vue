@@ -1,5 +1,5 @@
 <template>
-  <footer class="main-footer fixed inset-x-0 bottom-0">
+  <footer class="main-footer fixed inset-x-0 bottom-0 z-40">
     <div class="bottom-0 right-0"></div>
       <div class="w-full max-w-md mx-auto">
         <div class="px-7 bg-white shadow-lg rounded-2xl sm:mb-5">

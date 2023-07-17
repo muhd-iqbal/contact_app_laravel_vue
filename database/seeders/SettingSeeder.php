@@ -26,5 +26,6 @@ class SettingSeeder extends Seeder
         Setting::firstOrCreate(['name' => 'allocate_from', 'value' => '1', 'type' => 'select', 'description' => 'All Income/Fixed Salary', 'active' => 1]);
         Setting::firstOrCreate(['name' => 'salary', 'value' => '0', 'type' => 'number', 'description' => 'Salary', 'active' => 1]);
         Setting::firstOrCreate(['name' => 'cc_limit', 'value' => '0', 'type' => 'number', 'description' => 'Credit Card Limit', 'active' => 1]);
+        Setting::firstOrCreate(['name' => 'marketplace', 'value' => '1,2,3,4,5', 'type' => 'text', 'description' => 'Marketplace', 'active' => 1]);
     }
 }

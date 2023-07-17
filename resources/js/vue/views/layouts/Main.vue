@@ -2,6 +2,8 @@
 
     <!-- Navbar -->
     <Navbar />
+
+   <slot name="toast" />
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
@@ -18,4 +20,5 @@ import Navbar from "@/views/layouts/Navbar.vue";
 import Sidebar from "@/views/layouts/Sidebar.vue";
 import Footer from "@/views/layouts/Footer.vue";
 import { onMounted } from "vue";
+import Toast from "../../components/Toast.vue";
 </script>

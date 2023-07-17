@@ -19,28 +19,28 @@
                         </div>
                         <Transition name="slide-fade">
                             <div v-if="shoppingItem.length > 0" class="mt-4 flex gap-2">
-                                <a :href="lazada" target="_blank"
+                                <a v-if="lazada_opt" :href="lazada" target="_blank"
                                     class="flex items-center gap-2 p-2 border-2 rounded-md text-teal border-teal bg-white hover:invert">
                                     <img src="../../../assets/dist/img/favicon/lazada.png" alt="" title="Search on Lazada">
                                     Ladaza
                                 </a>
-                                <a :href="shopee" target="_blank"
+                                <a v-if="shopee_opt" :href="shopee" target="_blank"
                                     class="flex items-center gap-2 p-2 border-2 rounded-md text-teal border-teal bg-white hover:invert">
                                     <img src="../../../assets/dist/img/favicon/shopee.png" alt="" title="Search on Shopee">
                                     Shopee
                                 </a>
-                                <a :href="mudah" target="_blank"
+                                <a v-if="mudah_opt" :href="mudah" target="_blank"
                                     class="flex items-center gap-2 p-2 border-2 rounded-md text-teal border-teal bg-white hover:invert">
                                     <img src="../../../assets/dist/img/favicon/mudah.png" alt="" title="Search on Mudah">
                                     Mudah
                                 </a>
-                                <a :href="carousell" target="_blank"
+                                <a v-if="carousell_opt" :href="carousell" target="_blank"
                                     class="flex items-center gap-2 p-2 border-2 rounded-md text-teal border-teal bg-white hover:invert">
                                     <img src="../../../assets/dist/img/favicon/carousell.ico" alt=""
                                         title="Search on Carousell">
                                     Carousell
                                 </a>
-                                <a :href="lelong" target="_blank"
+                                <a v-if="lelong_opt" :href="lelong" target="_blank"
                                     class="flex items-center gap-2 p-2 border-2 rounded-md text-teal border-teal bg-white hover:invert">
                                     <img src="../../../assets/dist/img/favicon/lelong.ico" alt="" title="Search on Lelong">
                                     Lelong
@@ -72,9 +72,10 @@
 </template>
   
 <script setup lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import Main from '@/views/layouts/Main.vue';
 import { MonthPickerInput } from 'vue-month-picker'
+import axios from 'axios';
 
 
 const shoppingItem = ref('');
@@ -84,6 +85,11 @@ let shopee = ref('');
 let mudah = ref('');
 let carousell = ref('');
 let lelong = ref('');
+const lazada_opt = ref(false);
+const shopee_opt = ref(false);
+const mudah_opt = ref(false);
+const carousell_opt = ref(false);
+const lelong_opt = ref(false);
 
 const suggestList = () => {
     lazada.value = 'https://www.lazada.com.my/catalog/?q=' + shoppingItem.value;
@@ -92,6 +98,50 @@ const suggestList = () => {
     carousell.value = 'https://www.carousell.com.my/search/' + shoppingItem.value;
     lelong.value = 'https://www.lelong.com.my/catalog/all/list?TheKeyword=' + shoppingItem.value;
 }
+
+onMounted(async () => {
+    const response = await axios.get('/api/settings');
+    switch (response.status) {
+        case 200:
+            const { data } = response.data;
+            const [u_username] = data.filter((item: any) => item.name == "username");
+            const [u_email] = data.filter((item: any) => item.name == "email");
+            const [u_needs] = data.filter((item: any) => item.name == "needs");
+            const [u_wants] = data.filter((item: any) => item.name == "wants");
+            const [u_savings] = data.filter((item: any) => item.name == "savings");
+            const [u_currency] = data.filter((item: any) => item.name == "currency");
+            const [u_allocationFrom] = data.filter((item: any) => item.name == "allocate_from");
+            const [u_monthlySalary] = data.filter((item: any) => item.name == "salary");
+            const [u_ccLimit] = data.filter((item: any) => item.name == "cc_limit");
+            const [u_marketplace] = data.filter((item: any) => item.name == "marketplace");
+
+            if (u_marketplace != undefined) {
+                // 1,2,3,4,5
+                const marketplaces = u_marketplace.value.split(',');
+                marketplaces.forEach((item: any) => {
+                    switch (item) {
+                        case '1':
+                            lazada_opt.value = true;
+                            break;
+                        case '2':
+                            shopee_opt.value = true;
+                            break;
+                        case '3':
+                            lelong_opt.value = true;
+                            break;
+                        case '4':
+                            carousell_opt.value = true;
+                            break;
+                        case '5':
+                            mudah_opt.value = true;
+                            break;
+                    }
+                });
+            }
+    }
+
+})
+
 
 </script>
   
